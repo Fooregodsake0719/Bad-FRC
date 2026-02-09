@@ -2,7 +2,7 @@
 <html>
 <head>
   <meta charset="UTF-8">
-  <title>我的人生RPG</title>
+  <title>Click to explore</title>
   <style>
     /* 全局样式：复古RPG风格 */
 * {
@@ -78,10 +78,10 @@ h1 {
   <!-- 首页场景 -->
 <div id="startScene" class="scene active">
   <div class="game-box">
-    <h1>✨ 欢迎来到我的人生RPG ✨</h1>
+    <h1>✨ Welcome to my life ✨</h1>
     <div class="btn-group">
-      <button class="rpg-btn" onclick="switchScene('lifeScene')">🎓 探索我的经历</button>
-      <button class="rpg-btn" onclick="switchScene('workScene')">💻 探索我的作品</button>
+      <button class="rpg-btn" onclick="switchScene('lifeScene')">🎓 Explore my experience</button>
+      <button class="rpg-btn" onclick="switchScene('workScene')">💻 Explore my project</button>
     </div>
   </div>
 </div>
@@ -89,11 +89,11 @@ h1 {
 <!-- 经历场景 -->
 <div id="lifeScene" class="scene">
   <div class="game-box">
-    <h1>🎓 我的经历地图</h1>
+    <h1>🎓 My personal experience</h1>
     <div class="btn-group">
-      <button class="rpg-btn" onclick="showDialog('我2020年入学，主修【计算机科学】，坐标：北京邮电大学～')">📚 校园信息</button>
-      <button class="rpg-btn" onclick="showQuiz()">🎯 解锁社团经历</button>
-      <button class="rpg-btn" onclick="switchScene('startScene')">⬅️ 返回首页</button>
+      <button class="rpg-btn" onclick="showDialog('I started school in 2024, my major is Physics')">📚 School background</button>
+      <button class="rpg-btn" onclick="showQuiz()">🎯 Past club</button>
+      <button class="rpg-btn" onclick="switchScene('startScene')">⬅️ home</button>
     </div>
     <div class="dialog" id="dialog"></div>
   </div>
@@ -102,10 +102,10 @@ h1 {
 <!-- 作品场景 -->
 <div id="workScene" class="scene">
   <div class="game-box">
-    <h1>💻 我的作品地图</h1>
+    <h1>💻 My project</h1>
     <div class="btn-group">
-      <button class="rpg-btn" onclick="showDialog('我的第一个作品是【个人记账小程序】，用Vue做的～')">🔧 第一个作品</button>
-      <button class="rpg-btn" onclick="switchScene('startScene')">⬅️ 返回首页</button>
+      <button class="rpg-btn" onclick="showDialog('My first project is a model made by Fusion360.')">🔧 First project</button>
+      <button class="rpg-btn" onclick="switchScene('startScene')">⬅️ home</button>
     </div>
     <div class="dialog" id="workDialog"></div>
   </div>
@@ -140,12 +140,12 @@ function showDialog(text) {
 // 互动问答：答对解锁内容
 function showQuiz() {
   // 弹出问答框
-  const answer = prompt('🎮 问答环节：我加入的第一个社团是？（答案：摄影社）');
+  const answer = prompt('🎮 Q: What is the first club that I joined?(A: Bad FRC)');
   // 判断答案
-  if (answer === '摄影社') {
-    showDialog('答对啦！我在摄影社拍了100+张校园照片，作品存在「我的相册」里～');
+  if (answer === 'Bad FRC') {
+    showDialog('Correct!');
   } else {
-    showDialog('❌ 答错啦～再猜猜？提示：和“拍照”有关哦～');
+    showDialog('❌ Wrong, try again.');
   }
 }
   </script>
