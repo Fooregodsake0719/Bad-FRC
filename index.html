@@ -1,0 +1,153 @@
+<!DOCTYPE html>
+<html>
+<head>
+  <meta charset="UTF-8">
+  <title>我的人生RPG</title>
+  <style>
+    /* 全局样式：复古RPG风格 */
+* {
+  margin: 0;
+  padding: 0;
+  font-family: "Courier New", 宋体; /* 复古字体 */
+}
+body {
+  background: #2c3e50; /* 深色背景，像游戏界面 */
+  color: #fff;
+  min-height: 100vh;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  background-image: url("https://imgur.com/a/2XGKtEQ"); /* 模糊背景图 */
+  background-size: cover;
+}
+/* 场景容器：默认隐藏，只有active的显示 */
+.scene {
+  display: none;
+  width: 80%;
+  max-width: 800px;
+  text-align: center;
+}
+.scene.active {
+  display: block;
+}
+/* 游戏盒子：模拟RPG对话框 */
+.game-box {
+  background: rgba(0, 0, 0, 0.8);
+  padding: 40px;
+  border: 5px solid #f1c40f; /* 金色边框，RPG风格 */
+  border-radius: 10px;
+}
+/* RPG按钮样式 */
+.rpg-btn {
+  background: #e74c3c;
+  color: white;
+  border: 3px solid #c0392b;
+  padding: 15px 30px;
+  margin: 10px;
+  font-size: 16px;
+  cursor: pointer;
+  border-radius: 8px;
+  transition: all 0.2s;
+}
+.rpg-btn:hover {
+  background: #c0392b;
+  transform: scale(1.05); /* 鼠标悬浮放大，游戏感 */
+}
+/* 对话弹窗：模拟RPG对话框 */
+.dialog {
+  margin-top: 20px;
+  padding: 20px;
+  background: rgba(0, 0, 0, 0.9);
+  border: 2px solid #f1c40f;
+  border-radius: 8px;
+  min-height: 60px;
+  text-align: left;
+  font-size: 18px;
+  line-height: 1.5;
+}
+/* 标题样式 */
+h1 {
+  color: #f1c40f;
+  margin-bottom: 30px;
+  font-size: 32px;
+  text-shadow: 2px 2px 0 #000;
+}
+  </style>
+</head>
+<body>
+  <!-- 首页场景 -->
+<div id="startScene" class="scene active">
+  <div class="game-box">
+    <h1>✨ 欢迎来到我的人生RPG ✨</h1>
+    <div class="btn-group">
+      <button class="rpg-btn" onclick="switchScene('lifeScene')">🎓 探索我的经历</button>
+      <button class="rpg-btn" onclick="switchScene('workScene')">💻 探索我的作品</button>
+    </div>
+  </div>
+</div>
+
+<!-- 经历场景 -->
+<div id="lifeScene" class="scene">
+  <div class="game-box">
+    <h1>🎓 我的经历地图</h1>
+    <div class="btn-group">
+      <button class="rpg-btn" onclick="showDialog('我2020年入学，主修【计算机科学】，坐标：北京邮电大学～')">📚 校园信息</button>
+      <button class="rpg-btn" onclick="showQuiz()">🎯 解锁社团经历</button>
+      <button class="rpg-btn" onclick="switchScene('startScene')">⬅️ 返回首页</button>
+    </div>
+    <div class="dialog" id="dialog"></div>
+  </div>
+</div>
+
+<!-- 作品场景 -->
+<div id="workScene" class="scene">
+  <div class="game-box">
+    <h1>💻 我的作品地图</h1>
+    <div class="btn-group">
+      <button class="rpg-btn" onclick="showDialog('我的第一个作品是【个人记账小程序】，用Vue做的～')">🔧 第一个作品</button>
+      <button class="rpg-btn" onclick="switchScene('startScene')">⬅️ 返回首页</button>
+    </div>
+    <div class="dialog" id="workDialog"></div>
+  </div>
+</div>
+  <script>
+    // 场景切换函数：隐藏所有场景，显示目标场景
+function switchScene(sceneId) {
+  // 隐藏所有场景
+  document.querySelectorAll('.scene').forEach(scene => {
+    scene.classList.remove('active');
+  });
+  // 显示选中的场景
+  document.getElementById(sceneId).classList.add('active');
+  // 清空对话
+  document.getElementById('dialog').innerText = '';
+}
+
+// 显示对话内容
+function showDialog(text) {
+  const dialog = document.getElementById('dialog');
+  dialog.innerText = text;
+  // 模拟RPG打字机效果（慢慢显示文字）
+  let i = 0;
+  dialog.innerText = '';
+  const timer = setInterval(() => {
+    dialog.innerText += text[i];
+    i++;
+    if (i >= text.length) clearInterval(timer);
+  }, 50); // 每个字间隔50毫秒
+}
+
+// 互动问答：答对解锁内容
+function showQuiz() {
+  // 弹出问答框
+  const answer = prompt('🎮 问答环节：我加入的第一个社团是？（答案：摄影社）');
+  // 判断答案
+  if (answer === '摄影社') {
+    showDialog('答对啦！我在摄影社拍了100+张校园照片，作品存在「我的相册」里～');
+  } else {
+    showDialog('❌ 答错啦～再猜猜？提示：和“拍照”有关哦～');
+  }
+}
+  </script>
+</body>
+</html>
